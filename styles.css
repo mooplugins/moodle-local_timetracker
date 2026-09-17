@@ -1,0 +1,144 @@
+.local-timetracker-idle {
+    background-color: rgba(0, 0, 0, 0.9);
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 100000;
+    top: 0;
+    left: 0;
+}
+
+.local-timetracker-idle-dialog {
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    min-height: 150px;
+    background-color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 15px;
+    font-weight: bold;
+    line-height: 25px;
+    font-size: 15px;
+}
+
+#timetracker_idle_time_show {
+    color: #bf3503;
+}
+
+@media (max-width: 768px) {
+    .local-timetracker-idle-dialog {
+        left: 5%;
+        width: 90%;
+        top: 20%;
+    }
+}
+
+/* Staff report page. */
+.local-timetracker-report .headerinfo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.local-timetracker-report .headerinfo .left,
+.local-timetracker-report .headerinfo .right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.local-timetracker-report .headerinfo .left > div {
+    display: flex;
+    align-items: center;
+}
+
+.local-timetracker-report #courseid {
+    min-width: 16rem;
+}
+
+.local-timetracker-report .searchbox {
+    gap: 0.5rem;
+}
+
+.local-timetracker-report .searchbox .form-control {
+    min-width: 12rem;
+}
+
+.local-timetracker-report #ajaxloading {
+    display: none;
+    margin-bottom: 0.75rem;
+}
+
+.local-timetracker-report #ajaxloading img {
+    height: 24px;
+    width: 24px;
+}
+
+.local-timetracker-report .footerinfo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.local-timetracker-report .footerinfo .left,
+.local-timetracker-report .footerinfo .right .timetracker-tables-info,
+.local-timetracker-report .footerinfo .right .slmstables_info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.local-timetracker-report .timetracker-paging-summary {
+    min-width: 10rem;
+}
+
+.local-timetracker-report .timetracker-paging-controls .pagination .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+}
+
+.local-timetracker-report .timetracker-paging-controls .pagination .page-link .icon {
+    margin: 0;
+    width: 1rem;
+    height: 1rem;
+}
+
+.local-timetracker-report .timetracker-empty-row {
+    padding: 1rem;
+}
+
+.local-timetracker-report .dropdown-menu [data-export] {
+    cursor: pointer;
+}
+
+@media (max-width: 767.98px) {
+    .local-timetracker-report .headerinfo,
+    .local-timetracker-report .footerinfo,
+    .local-timetracker-report .headerinfo .left,
+    .local-timetracker-report .headerinfo .right {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .local-timetracker-report #courseid,
+    .local-timetracker-report .searchbox {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .local-timetracker-report .searchbox .form-control {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+}

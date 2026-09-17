@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/timetracker/db" VERSION="20260908" COMMENT="XMLDB file for Moodle local/timetracker"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="local_timetracker" COMMENT="Stores the time tracker settings for course modules">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="coursemodule" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="enabled" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="idletime" TYPE="int" LENGTH="5" NOTNULL="true" DEFAULT="5" SEQUENCE="false" COMMENT="in minutes"/>
+        <FIELD NAME="idletimeneglect" TYPE="int" LENGTH="5" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="in minutes"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="local_timetracker_course_ix" UNIQUE="false" FIELDS="course"/>
+        <INDEX NAME="local_timetracker_cm_ix" UNIQUE="false" FIELDS="coursemodule"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="local_timetracker_log" COMMENT="Hot/open timing logs and recent sub-sessions">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timetrackerid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="sessionid" TYPE="char" LENGTH="50" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="element" TYPE="char" LENGTH="50" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="value" TYPE="int" LENGTH="18" NOTNULL="true" DEFAULT="5" SEQUENCE="false"/>
+        <FIELD NAME="finishedattempt" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="local_timetracker_log_user_ix" UNIQUE="false" FIELDS="userid"/>
+        <INDEX NAME="local_timetracker_log_tt_ix" UNIQUE="false" FIELDS="timetrackerid"/>
+        <INDEX NAME="local_timetracker_log_sess_ix" UNIQUE="false" FIELDS="sessionid"/>
+        <INDEX NAME="local_timetracker_log_fin_ix" UNIQUE="false" FIELDS="finishedattempt"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="local_timetracker_report" COMMENT="Compacted closed attempt totals for reporting">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timetrackerid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="coursemodule" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="sessionid" TYPE="char" LENGTH="50" NOTNULL="true" DEFAULT="" SEQUENCE="false"/>
+        <FIELD NAME="timestart" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timeend" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="idleseconds" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timespent" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"
+            COMMENT="Active seconds: timeend - timestart - idleseconds"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="local_timetracker_rep_utt_ix" UNIQUE="false" FIELDS="userid, timetrackerid"/>
+        <INDEX NAME="local_timetracker_rep_course_ix" UNIQUE="false" FIELDS="course"/>
+        <INDEX NAME="local_timetracker_rep_cm_ix" UNIQUE="false" FIELDS="coursemodule"/>
+        <INDEX NAME="local_timetracker_rep_uniq_ix" UNIQUE="true"
+            FIELDS="userid, timetrackerid, sessionid, timestart"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>
