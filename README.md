@@ -52,7 +52,7 @@ Closed attempts are compacted by a scheduled task into `local_timetracker_report
 ### Ready for other plugins
 
 Totals can be used by companion plugins such as the **Time tracked** availability condition
-(`availability_timetracked`) and the **Time Tracker** block (`block_timetracker`).
+[`availability_timetracked`](https://github.com/mooplugins/moodle-availability_timetracked) and the **Time Tracker** block [`block_timetracker`](https://github.com/mooplugins/moodle-block_timetracker).
 
 ## Requirements
 
@@ -101,4 +101,4 @@ GNU GPL v3 or later. See [LICENSE](LICENSE).
 
 ## Credits
 
-Originally developed for ScholarLMS. Maintained by [MooPlugins](https://www.mooplugins.com/).
+Originally developed for [ScholarLMS](https://www.scholarlms.com/). Maintained by [MooPlugins](https://www.mooplugins.com/).
