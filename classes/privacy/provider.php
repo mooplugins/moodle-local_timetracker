@@ -18,7 +18,8 @@
  * Privacy provider for local_timetracker.
  *
  * @package    local_timetracker
- * @copyright  2026 Mooplugins
+ * @author     BitKea Technologies LLP
+ * @copyright  2026 BitKea Technologies LLP
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -38,7 +39,6 @@ class provider implements
     \core_privacy\local\metadata\provider,
     \core_privacy\local\request\core_userlist_provider,
     \core_privacy\local\request\plugin\provider {
-
     /**
      * Describe stored personal data.
      *
@@ -196,7 +196,7 @@ class provider implements
 
         $trackerids = $DB->get_fieldset_select('local_timetracker', 'id', 'course = ?', [$context->instanceid]);
         if (!empty($trackerids)) {
-            list($insql, $inparams) = $DB->get_in_or_equal($trackerids);
+            [$insql, $inparams] = $DB->get_in_or_equal($trackerids);
             $DB->delete_records_select('local_timetracker_log', "timetrackerid $insql", $inparams);
         }
 
@@ -224,7 +224,7 @@ class provider implements
 
             $trackerids = $DB->get_fieldset_select('local_timetracker', 'id', 'course = ?', [$context->instanceid]);
             if (!empty($trackerids)) {
-                list($insql, $inparams) = $DB->get_in_or_equal($trackerids, SQL_PARAMS_NAMED);
+                [$insql, $inparams] = $DB->get_in_or_equal($trackerids, SQL_PARAMS_NAMED);
                 $params = array_merge(['userid' => $userid], $inparams);
                 $DB->delete_records_select(
                     'local_timetracker_log',
@@ -259,11 +259,11 @@ class provider implements
             return;
         }
 
-        list($usersql, $userparams) = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED, 'user');
+        [$usersql, $userparams] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED, 'user');
 
         $trackerids = $DB->get_fieldset_select('local_timetracker', 'id', 'course = ?', [$context->instanceid]);
         if (!empty($trackerids)) {
-            list($trackersql, $trackerparams) = $DB->get_in_or_equal($trackerids, SQL_PARAMS_NAMED, 'tracker');
+            [$trackersql, $trackerparams] = $DB->get_in_or_equal($trackerids, SQL_PARAMS_NAMED, 'tracker');
             $params = array_merge($userparams, $trackerparams);
             $DB->delete_records_select(
                 'local_timetracker_log',

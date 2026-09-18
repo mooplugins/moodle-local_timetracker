@@ -2,6 +2,14 @@
 
 All notable changes to the Time Tracker plugin are documented here.
 
+## 1.4.4 - 2026-09-18
+
+### Changed
+
+- Copyright / author metadata set to BitKea Technologies LLP (Moodle Plugins Directory).
+- Privacy provider uses short list assignment syntax for Moodle coding style.
+- Report AJAX uses `PARAM_ALPHANUM` for `sesskey`.
+
 ## 1.4.3 - 2026-09-09
 
 ### Fixed

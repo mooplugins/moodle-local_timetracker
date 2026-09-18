@@ -18,7 +18,8 @@
  * AJAX endpoint: paginated Time Tracker report rows.
  *
  * @package    local_timetracker
- * @copyright  2026 Mooplugins
+ * @author     BitKea Technologies LLP
+ * @copyright  2026 BitKea Technologies LLP
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -29,7 +30,7 @@ require_once($CFG->dirroot . '/local/timetracker/locallib.php');
 
 require_login();
 local_timetracker_require_view_report();
-if (optional_param('sesskey', '', PARAM_RAW) !== '') {
+if (optional_param('sesskey', '', PARAM_ALPHANUM) !== '') {
     require_sesskey();
 }
 
