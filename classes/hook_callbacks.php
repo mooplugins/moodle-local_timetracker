@@ -89,16 +89,22 @@ class hook_callbacks {
                 $idletext = get_string('idletext', 'local_timetracker');
                 $buttonlabel = get_string('button_resume', 'local_timetracker');
 
-                $html = '<div id="timetracker_idle" class="local-timetracker-idle" style="display:none;">'
-                    . '<div class="local-timetracker-idle-dialog">'
+                $html = '<div id="timetracker_idle" class="modal local-timetracker-idle" tabindex="-1"'
+                    . ' role="dialog" aria-modal="true" aria-labelledby="timetracker_idle_title"'
+                    . ' style="display:none;">'
+                    . '<div class="modal-dialog modal-dialog-centered">'
+                    . '<div class="modal-content">'
+                    . '<div class="modal-body text-center">'
+                    . '<p id="timetracker_idle_title" class="mb-3">'
                     . $idletext
-                    . ' <span id="timetracker_idle_time_show"></span> minutes.'
-                    . '<br /><br />'
-                    . '<form action="' . s($url) . '" method="post">'
+                    . ' <span id="timetracker_idle_time_show" class="text-danger"></span>'
+                    . ' ' . get_string('minutes')
+                    . '</p>'
+                    . '<form action="' . s($url) . '" method="post" class="m-0">'
                     . '<input type="hidden" id="timetracker_idle_time" name="timetracker_idle_time" value="">'
-                    . '<input type="submit" value="' . s($buttonlabel) . '" class="btn btn-primary">'
+                    . '<button type="submit" class="btn btn-primary">' . s($buttonlabel) . '</button>'
                     . '</form>'
-                    . '</div></div>';
+                    . '</div></div></div></div>';
 
                 $hook->add_html($html);
 

@@ -1,41 +1,24 @@
+/* Idle overlay — layout uses Bootstrap modal classes; this adds the full-page dimmer. */
 .local-timetracker-idle {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.75);
+    display: none;
     height: 100%;
-    position: fixed;
-    width: 100%;
-    z-index: 100000;
-    top: 0;
     left: 0;
-}
-
-.local-timetracker-idle-dialog {
     position: fixed;
-    top: 30%;
-    left: 30%;
-    width: 40%;
-    min-height: 150px;
-    background-color: #fff;
-    text-align: center;
-    padding: 30px 20px;
-    border-radius: 15px;
-    font-weight: bold;
-    line-height: 25px;
-    font-size: 15px;
+    top: 0;
+    width: 100%;
+    z-index: 1055; /* Align with Bootstrap modal z-index. */
 }
 
-#timetracker_idle_time_show {
-    color: #bf3503;
+.local-timetracker-idle .modal-dialog {
+    pointer-events: auto;
 }
 
-@media (max-width: 768px) {
-    .local-timetracker-idle-dialog {
-        left: 5%;
-        width: 90%;
-        top: 20%;
-    }
+.local-timetracker-idle .modal-content {
+    font-weight: 600;
 }
 
-/* Staff report page. */
+/* Staff report page layout helpers (components use Boost/BS5 classes in the template). */
 .local-timetracker-report .headerinfo {
     display: flex;
     flex-wrap: wrap;
@@ -90,8 +73,7 @@
 }
 
 .local-timetracker-report .footerinfo .left,
-.local-timetracker-report .footerinfo .right .timetracker-tables-info,
-.local-timetracker-report .footerinfo .right .slmstables_info {
+.local-timetracker-report .footerinfo .right .timetracker-tables-info {
     display: flex;
     align-items: center;
     gap: 0.5rem;

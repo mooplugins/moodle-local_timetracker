@@ -9,6 +9,8 @@ All notable changes to the Time Tracker plugin are documented here.
 - Copyright / author metadata set to BitKea Technologies LLP (Moodle Plugins Directory).
 - Privacy provider uses short list assignment syntax for Moodle coding style.
 - Report AJAX uses `PARAM_ALPHANUM` for `sesskey`.
+- Report page JS moved to AMD (`local_timetracker/report`) instead of legacy `$PAGE->requires->js()`.
+- Idle overlay uses Bootstrap modal markup (`modal` / `modal-dialog` / `btn-primary`) and theme `text-danger`.
 
 ## 1.4.3 - 2026-09-09
 

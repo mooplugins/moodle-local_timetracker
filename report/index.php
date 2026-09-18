@@ -37,9 +37,6 @@ $PAGE->set_heading($heading);
 $PAGE->set_title($heading);
 $PAGE->add_body_class('limitedwidth');
 
-$reportjs = '/local/timetracker/js/report/index.js';
-$PAGE->requires->js(new moodle_url($reportjs, ['v' => filemtime($CFG->dirroot . $reportjs)]), true);
-
 $courses = [
     ['id' => 0, 'fullname' => get_string('select_course', 'local_timetracker')],
 ];
@@ -91,6 +88,15 @@ $data = [
     'showingrecordsformat' => $showingrecordsformat,
     'colcount' => count($tableheader),
 ];
+
+$PAGE->requires->js_call_amd('local_timetracker/report', 'init', [[
+    'ajaxurl' => $data['ajaxUrl'],
+    'downloadurl' => $data['downloadajaxurl'],
+    'sesskey' => sesskey(),
+    'nodata' => get_string('nodataavailable', 'local_timetracker'),
+    'showingrecords' => $showingrecordsformat,
+    'colcount' => count($tableheader),
+]]);
 
 echo $OUTPUT->header();
 echo $OUTPUT->render_from_template('local_timetracker/report_index', $data);
